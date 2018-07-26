@@ -11,7 +11,7 @@ client.login(apikey);
 //commands
 const {join} = require("./commands/basic/join");
 const {ping} = require("./commands/playground/ping");
-
+const {music} = require("./commands/music/music");
 
 //prefix to start commands with
 
@@ -20,5 +20,6 @@ client.on("ready", () => {
     console.log("Bot Launched... ")
 })
 
-join(client);
 
+music(client)
+join(client)

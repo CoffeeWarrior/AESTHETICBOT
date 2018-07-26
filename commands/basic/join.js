@@ -5,8 +5,11 @@ join = (client) => {
         if (!message.guild){
             return
         }
-    
-        if(message.content === prefix + "join"){
+        if(message.author.bot){
+            return
+        }
+        msg = message.content.toLowerCase()
+        if(msg === prefix + "join" || msg === prefix + "j"){
             if(message.member.voiceChannel){
                 message.member.voiceChannel.join()
                 .then((connection) => {
