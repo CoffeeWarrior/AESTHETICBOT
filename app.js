@@ -1,26 +1,24 @@
 //packages
 var Discord = require("discord.js")
-var bot = new Discord.Client();
-
+var client = new Discord.Client();
+var ffmpeg = require("ffmpeg-binaries")
 //configuration stuff
-const {apikey} = require("./api-key");
+const {apikey} = require("./config");
+const {prefix} = require("./config");
+client.login(apikey);
+
 
 //commands
-const {ping} = require("./commands/ping")
+const {join} = require("./commands/basic/join");
+const {ping} = require("./commands/playground/ping");
 
 
-var prefix = '>';
+//prefix to start commands with
 
-bot.on("ready", () => {
+
+client.on("ready", () => {
     console.log("Bot Launched... ")
 })
 
+join(client);
 
-bot.on("message", (message) => {
-    if(message.channel.id === "471768501699346442"){ //checks if the channel is "bot-testing" -- id specific 
-        ping(message, prefix);
-    }
-
-})
-
-bot.login(apikey);
