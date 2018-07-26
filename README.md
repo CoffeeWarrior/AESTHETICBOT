@@ -9,4 +9,4 @@ In order to use this bot, you will have to specify a config.js file with your ex
 
 Commands so far:
 
-(your prefix)join 
+(prefix)join 
