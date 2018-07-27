@@ -3,15 +3,12 @@ var Discord = require("discord.js")
 var client = new Discord.Client();
 var ffmpeg = require("ffmpeg-binaries")
 //configuration stuff
-const {apikey} = require("./config");
-const {prefix} = require("./config");
+const {apikey} = require("./../../config");
+const {prefix} = require("./../../config");
 client.login(apikey);
 
 
-//commands
-const {join} = require("./commands/basic/join");
-const {music} = require("./commands/music/music");
-
+const {music} = require("./musicArray");
 //prefix to start commands with
 
 
@@ -20,5 +17,4 @@ client.on("ready", () => {
 })
 
 
-music(client)
-join(client)
+music(client);

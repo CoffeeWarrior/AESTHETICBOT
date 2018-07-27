@@ -1,10 +1,10 @@
 const {prefix} = require("./../../config");
 const {join} = require("./../basic/join");
 const ytdl = require("ytdl-core");
-const {youtubesearch} = require("./youtubesearch");
+const {youtubeSearch} = require("./youtubeSearch");
 
 
-//idk how I can export the logic of join()?? maybe just copy over
+
 const music = (client) => {    
     client.on("message", (message) => {
         if (!message.guild){
@@ -26,7 +26,7 @@ const music = (client) => {
                 message.member.voiceChannel.join()
                 .then((connection) => {
                     const streamOptions = {seek: 0, volume: 1}
-                    youtubesearch(searchterm).then((ytvid) => {
+                    youtubeSearch(searchterm).then((ytvid) => {
                             
                         const dispatcher = connection.playStream(ytdl(ytvid, {filter: "audioonly"}), streamOptions)
                         .on("end", () => {
@@ -34,7 +34,7 @@ const music = (client) => {
                             message.member.voiceChannel.leave()
                         })
                         .on("error", error => {
-                            console.error(err);
+                            console.error(error);
                         })
                     
                         dispatcher.setVolumeLogarithmic(5 / 5);

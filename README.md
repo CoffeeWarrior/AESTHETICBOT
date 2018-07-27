@@ -11,3 +11,4 @@ Commands so far:
 
 (prefix)join 
 (prefix)play [search term]
+

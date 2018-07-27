@@ -7,7 +7,7 @@ const youtube = new Youtube(googleapikey)
 const ytstring = "https://www.youtube.com/watch?v="
 
 //searches youtube for arguments -> should return video link
-const youtubesearch = (args) => {
+const youtubeSearch = (args) => {
     return youtube.searchVideos(args).then((result)=> {   
         return youtube.getVideoByID(result[0].id).then(res =>{ 
             const ytlink = ytstring + res.id;
@@ -16,4 +16,4 @@ const youtubesearch = (args) => {
     }).catch((err) => console.log(err))
 }
 
-module.exports = { youtubesearch }
+module.exports = { youtubeSearch }
