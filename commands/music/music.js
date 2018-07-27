@@ -16,7 +16,9 @@ const music = (client) => {
         msg = message.content;
         
         const searchterm = msg.slice(4, message.content.length);
+        const args = msg.split(" ");
 
+        
         if(args[0] === prefix + "play" || args[0] === prefix + "p"){
             if(message.member.voiceChannel){
                 
