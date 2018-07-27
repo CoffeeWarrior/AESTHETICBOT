@@ -1,6 +1,8 @@
 const {prefix} = require("./../../config");
 const {join} = require("./../basic/join");
 const ytdl = require("ytdl-core");
+const {youtubesearch} = require("./youtubesearch");
+
 
 //idk how I can export the logic of join()?? maybe just copy over
 const music = (client) => {    
@@ -12,7 +14,8 @@ const music = (client) => {
             return
         }
         msg = message.content;
-        const args = msg.split(" ");
+        
+        const searchterm = msg.slice(4, message.content.length);
 
         if(args[0] === prefix + "play" || args[0] === prefix + "p"){
             if(message.member.voiceChannel){
@@ -20,10 +23,10 @@ const music = (client) => {
                 
                 message.member.voiceChannel.join()
                 .then((connection) => {
-                    console.log(args[1]);
                     const streamOptions = {seek: 0, volume: 1}
-
-                    const dispatcher = connection.playStream(ytdl(args[1], {filter: "audioonly"}), streamOptions)
+                    youtubesearch(searchterm).then((ytvid) => {
+                            
+                        const dispatcher = connection.playStream(ytdl(ytvid, {filter: "audioonly"}), streamOptions)
                         .on("end", () => {
                             console.log("song ended")
                             message.member.voiceChannel.leave()
@@ -33,12 +36,10 @@ const music = (client) => {
                         })
                     
                         dispatcher.setVolumeLogarithmic(5 / 5);
-
-
+                    })
                     const rng = Math.floor((Math.random() * 3));
-                    message.reply(["joined baby!", "right here!", "up and running!"][rng]);
                 })
-                .catch((e) => (message.reply(`Im not able to join that channel. Adjust your perms moron. ${e}`)));
+                .catch((e) => (console.log(e)));
             } else {
                 message.reply("You need to be in a channel dipshit")
             }

@@ -1,4 +1,4 @@
-# AESTHETICBOT
+# A E S T H E T I C B O T
 Making my own bot for discord!
 
 Having used Discord for a long time to chat with friends, I thought it would be a fun project to make a discord bot capable of playing music
@@ -10,3 +10,4 @@ In order to use this bot, you will have to specify a config.js file with your ex
 Commands so far:
 
 (prefix)join 
+(prefix)play [search term]
