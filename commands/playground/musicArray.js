@@ -20,6 +20,7 @@ const music = (client) => {
         
         if(args[0].toLowerCase() === prefix + "play" || args[0].toLowerCase() === prefix + "p"){
             queue.push(searchterm);
+            console.log(`queue in music ${queue}`)
             if(!playing){    
                 playing = true; 
                 if(message.member.voiceChannel){

@@ -2,15 +2,18 @@ const ytdl = require("ytdl-core");
 const {youtubeSearch}  = require("./../music/youtubeSearch");
 
 const youtubeQueue = (queue, connection, voiceChannel) => {
-    const streamOptions = {seek: 0, volume: 1};
     
     youtubeSearch(queue[0]).then((ytvid) => {
-        console.log(queue);
-        const dispatcher = connection.playStream(ytdl(ytvid, {filter:"audioonly"}), streamOptions)
-        .on("end", () => {
-            queue.shift()
-            if(queue.length > 0){
-                youtubeQueue(queue, connection);    
+        console.log(`queue in search ${queue}`)
+        
+        var dispatcher = connection.playStream(ytdl(ytvid, {filter:"audioonly"}), {seek: 0, volume: 1});
+        dispatcher.setVolumeLogarithmic(5 / 5);
+
+        dispatcher.on("end", () => {
+            if(queue.length > 1){
+                dispatcher.end()
+                queue.shift()
+                youtubeQueue(queue, connection, voiceChannel);    
             } else {
                 playing = false;
                 console.log("song ended")
@@ -18,8 +21,7 @@ const youtubeQueue = (queue, connection, voiceChannel) => {
             }
         });
 
-        dispatcher.setVolumeLogarithmic(5 / 5);
-    })
+    }).catch(e => console.log(e))
     
 } 
 

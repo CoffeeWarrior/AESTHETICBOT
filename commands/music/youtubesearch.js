@@ -11,6 +11,7 @@ const youtubeSearch = (args) => {
     return youtube.searchVideos(args).then((result)=> {   
         return youtube.getVideoByID(result[0].id).then(res =>{ 
             const ytlink = ytstring + res.id;
+            console.log(ytlink);
             return ytlink
         })
     }).catch((err) => console.log(err))
