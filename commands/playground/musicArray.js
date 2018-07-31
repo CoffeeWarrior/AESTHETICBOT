@@ -12,6 +12,7 @@ const music = (client) => {
         if(message.author.bot){
             return
         }
+        ;lkasdf;lasdf;lka
         msg = message.content;
         
         const searchterm = msg.slice(6, message.content.length);
