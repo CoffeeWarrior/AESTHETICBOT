@@ -1,5 +1,4 @@
 const {prefix} = require("./../../config");
-const {join} = require("./../basic/join");
 const ytdl = require("ytdl-core");
 const {youtubeSearch} = require("./youtubeSearch");
 

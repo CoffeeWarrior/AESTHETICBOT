@@ -12,7 +12,6 @@ client.login(apikey);
 const {join} = require("./commands/basic/join");
 const {music} = require("./commands/music/music");
 
-//prefix to start commands with
 
 
 client.on("ready", () => {

@@ -4,7 +4,6 @@ var client = new Discord.Client();
 var ffmpeg = require("ffmpeg-binaries")
 //configuration stuff
 const {apikey} = require("./../../config");
-const {prefix} = require("./../../config");
 client.login(apikey);
 
 

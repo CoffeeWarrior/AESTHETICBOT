@@ -26,7 +26,7 @@ const music = (client) => {
                 if(message.member.voiceChannel){
                     message.member.voiceChannel.join()
                     .then((connection) => {
-                        youtubeQueue(queue, connection, message.member.voiceChannel)
+                        playing = youtubeQueue(queue, connection, message.member.voiceChannel);
                     })
                     .catch((e) => (console.log(e))); 
                 }
