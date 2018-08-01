@@ -8,10 +8,8 @@ const {prefix} = require("./config");
 client.login(apikey);
 
 
-//commands
-const {join} = require("./commands/basic/join");
 const {music} = require("./commands/music/music");
-
+//prefix to start commands with
 
 
 client.on("ready", () => {
@@ -19,5 +17,4 @@ client.on("ready", () => {
 })
 
 
-music(client)
-join(client)
+music(client);

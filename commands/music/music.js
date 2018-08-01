@@ -1,10 +1,10 @@
 const {prefix} = require("./../../config");
-const ytdl = require("ytdl-core");
-const {youtubeSearch} = require("./youtubeSearch");
+const {youtubeQueue} = require("./youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
 
-
-const music = (client) => {    
+const music = (client) => {
+    const queue = [];
+    var playing = false; //works as flag to know whether to run join() again or not
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -14,35 +14,22 @@ const music = (client) => {
         }
         msg = message.content;
         
-        const searchterm = msg.slice(4, message.content.length);
+        const searchterm = msg.slice(6, message.content.length);
         const args = msg.split(" ");
 
         
-        if(args[0] === prefix + "play" || args[0] === prefix + "p"){
-            if(message.member.voiceChannel){
-                
-                
-                message.member.voiceChannel.join()
-                .then((connection) => {
-                    const streamOptions = {seek: 0, volume: 1}
-                    youtubeSearch(searchterm).then((ytvid) => {
-                            
-                        const dispatcher = connection.playStream(ytdl(ytvid, {filter: "audioonly"}), streamOptions)
-                        .on("end", () => {
-                            console.log("song ended")
-                            message.member.voiceChannel.leave()
-                        })
-                        .on("error", error => {
-                            console.error(error);
-                        })
-                    
-                        dispatcher.setVolumeLogarithmic(5 / 5);
+        if(args[0].toLowerCase() === prefix + "play" || args[0].toLowerCase() === prefix + "p"){
+            queue.push(searchterm);
+            console.log(`queue in music ${queue}`)
+            if(!playing){    
+                playing = true; 
+                if(message.member.voiceChannel){
+                    message.member.voiceChannel.join()
+                    .then((connection) => {
+                        youtubeQueue(queue, connection, message.member.voiceChannel)
                     })
-                    const rng = Math.floor((Math.random() * 3));
-                })
-                .catch((e) => (console.log(e)));
-            } else {
-                message.reply("You need to be in a channel dipshit")
+                    .catch((e) => (console.log(e))); 
+                }
             }
         }
     })
