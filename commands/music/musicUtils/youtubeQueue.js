@@ -9,8 +9,8 @@ const youtubeQueue = (queue, connection, voiceChannel) => {
         }
         return new Promise((resolve, reject) => {
             var dispatcher = connection.playStream(ytdl(ytvid, {filter:"audioonly"}), {seek: 0, volume: 1});
-            dispatcher.setVolumeLogarithmic(1);
-            dispatcher.on("end", ( ) =>{
+            dispatcher.setVolume(.5);
+            dispatcher.on("end", () =>{
                 dispatcher.end()
                 resolve()
             })

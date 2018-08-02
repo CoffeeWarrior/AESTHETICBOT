@@ -1,6 +1,6 @@
 const Youtube = require("simple-youtube-api");
 
-const {googleapikey} = require("./../../config");
+const {googleapikey} = require("./../../../config");
 
 const youtube = new Youtube(googleapikey)
 
