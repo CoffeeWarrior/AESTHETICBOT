@@ -1,9 +1,8 @@
 const {prefix} = require("./../../config");
-const {youtubeQueue} = require("./youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
+const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
 
-const music = (client) => {
-    const queue = [];
+const music = (client, queue) => {
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -17,7 +16,7 @@ const music = (client) => {
         const args = msg.split(" ");
 
         
-        if(args[0].toLowerCase() === prefix + "play" || args[0].toLowerCase() === prefix + "p"){
+        if(args[0].toLowerCase() === prefix + "play"){
             queue.push(searchterm); 
             if(message.member.voiceChannel !== message.guild.me.voiceChannel){
                 return message.member.voiceChannel.join()
