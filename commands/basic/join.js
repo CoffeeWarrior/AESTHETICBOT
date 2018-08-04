@@ -1,6 +1,6 @@
-const {prefix} = require("./../../config");
+const {prefix} = require("./../../config")
 
-join = (client) => {
+const join = (client) => {
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -8,11 +8,12 @@ join = (client) => {
         if(message.author.bot){
             return
         }
-        msg = message.content.toLowerCase()
+        const msg = message.content.toLowerCase()
+        
         if(msg === prefix + "join" || msg === prefix + "j"){
             if(message.member.voiceChannel){
                 message.member.voiceChannel.join()
-                .then((connection) => {
+                .then(() => {
                     const rng = Math.floor((Math.random() * 3));
                     message.reply(["joined baby!", "right here!", "up and running!"][rng]);
                 })

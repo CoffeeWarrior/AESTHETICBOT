@@ -4,15 +4,15 @@ const {googleapikey} = require("./../../../config");
 
 const youtube = new Youtube(googleapikey)
 
-const ytstring = "https://www.youtube.com/watch?v="
+const ytString = "https://www.youtube.com/watch?v="
 
 //searches youtube for arguments -> should return video link
 const youtubeSearch = (args) => {
     return youtube.searchVideos(args).then((result)=> {   
         return youtube.getVideoByID(result[0].id).then(res =>{ 
-            const ytlink = ytstring + res.id;
-            console.log(ytlink);
-            return ytlink
+            const ytLink = ytString + res.id;
+            console.log(ytLink);
+            return ytLink
         })
     }).catch((err) => console.log(err))
 }

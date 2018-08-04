@@ -1,8 +1,8 @@
 const {prefix} = require("./../../config");
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
-
 const music = (client, queue) => {
+    let music_dispatcher = null;
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -10,20 +10,38 @@ const music = (client, queue) => {
         if(message.author.bot){
             return
         }
-        msg = message.content;
+        const msg = message.content;
         
         const searchterm = msg.slice(6, message.content.length);
         const args = msg.split(" ");
-
         
+     
+        // let command = resolve_command()
+
+        // // look for js enum
+        // switch(command){
+        //     case const.Play:
+        //     break;
+        //     case const.Skip:
+        //     if (music_dispatcher){
+        //         md.end();
+        //     }
+
+
         if(args[0].toLowerCase() === prefix + "play"){
             queue.push(searchterm); 
             if(message.member.voiceChannel !== message.guild.me.voiceChannel){
-                return message.member.voiceChannel.join()
+                return music_dispatcher = message.member.voiceChannel.join()
                 .then((connection) => {
-                    youtubeQueue(queue, connection, message.member.voiceChannel)
+                    return youtubeQueue(queue, connection, message.member.voiceChannel).then((music_dispatcher) => {
+                        client.on("message", (message) => {
+                            if(message.content.toLowerCase() === prefix + "skip"){
+                                music_dispatcher.end()
+                            }
+                        })
+                    });
                 })
-                .catch((e) => (console.log(e))); 
+                .catch((e) => (console.error(e)));
             }
         }
     })
