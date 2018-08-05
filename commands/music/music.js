@@ -2,7 +2,6 @@ const {prefix} = require("./../../config")
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
 const music = (client, queue) => {
-    let music_dispatcher = null
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -35,7 +34,7 @@ const music = (client, queue) => {
                     .then((connection) => {
                         return youtubeQueue(queue, connection, message.member.voiceChannel, client)
                     })
-                    .catch((e) => (console.error(e)))
+                    .catch((e) => (e))
             }
         }
     })

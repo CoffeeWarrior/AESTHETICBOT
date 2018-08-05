@@ -1,13 +1,13 @@
 //packages
 var Discord = require("discord.js")
-var client = new Discord.Client();
+var client = new Discord.Client()
 //configuration stuff
-const {apikey} = require("./config");
-client.login(apikey);
+const {apikey} = require("./config")
+client.login(apikey)
 
 
-const {music} = require("./commands/music/music");
-const queue = [];
+const {music} = require("./commands/music/music")
+const queue = []
 
 
 
@@ -16,4 +16,4 @@ client.on("ready", () => {
 })
 
 
-music(client, queue);
+music(client, queue)

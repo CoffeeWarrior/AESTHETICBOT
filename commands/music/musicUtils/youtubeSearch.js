@@ -13,7 +13,7 @@ const youtubeSearch = (args) => {
             const ytLink = ytString + res.id
             return ytLink
         })
-    }).catch((err) => console.log(err))
+    }).catch(() => {return})
 }
 
 module.exports = { youtubeSearch }

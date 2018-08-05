@@ -17,7 +17,7 @@ const join = (client) => {
                         const rng = Math.floor((Math.random() * 3))
                         message.reply(["joined baby!", "right here!", "up and running!"][rng])
                     })
-                    .catch((e) => (message.reply("Im not able to join that channel. Adjust your perms moron.")))
+                    .catch((e) => (message.reply(`Im not able to join that channel. Adjust your perms moron. ${e}`)))
             } else {
                 message.reply("You need to be in a channel dipshit")
             }
