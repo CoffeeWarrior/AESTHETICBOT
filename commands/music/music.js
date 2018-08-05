@@ -1,8 +1,8 @@
-const {prefix} = require("./../../config");
+const {prefix} = require("./../../config")
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
 const music = (client, queue) => {
-    let music_dispatcher = null;
+    let music_dispatcher = null
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -10,10 +10,10 @@ const music = (client, queue) => {
         if(message.author.bot){
             return
         }
-        const msg = message.content;
+        const msg = message.content
         
-        const searchterm = msg.slice(6, message.content.length);
-        const args = msg.split(" ");
+        const searchterm = msg.slice(6, message.content.length)
+        const args = msg.split(" ")
         
      
         // let command = resolve_command()
@@ -29,19 +29,13 @@ const music = (client, queue) => {
 
 
         if(args[0].toLowerCase() === prefix + "play"){
-            queue.push(searchterm); 
+            queue.push(searchterm) 
             if(message.member.voiceChannel !== message.guild.me.voiceChannel){
-                return music_dispatcher = message.member.voiceChannel.join()
-                .then((connection) => {
-                    return youtubeQueue(queue, connection, message.member.voiceChannel).then((music_dispatcher) => {
-                        client.on("message", (message) => {
-                            if(message.content.toLowerCase() === prefix + "skip"){
-                                music_dispatcher.end()
-                            }
-                        })
-                    });
-                })
-                .catch((e) => (console.error(e)));
+                message.member.voiceChannel.join()
+                    .then((connection) => {
+                        return youtubeQueue(queue, connection, message.member.voiceChannel, client)
+                    })
+                    .catch((e) => (console.error(e)))
             }
         }
     })
