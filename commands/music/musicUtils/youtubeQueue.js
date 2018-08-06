@@ -8,6 +8,7 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
             voiceChannel.leave()
             return
         }
+
         let dispatcher = connection.playStream(ytdl(ytVid, {filter:"audioonly"}), {seek: 0, volume: 1})
         
         dispatcher.setVolume(.25)
@@ -16,17 +17,39 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
             dispatcher.end()
             queue.shift()
             youtubeQueue(queue, connection, voiceChannel, client)
-            client.removeListener("message", skip)
+            client.removeListener("message", handleMessage)
         })
 
-        const skip = (message) =>{
+        const handleMessage = (message) =>{
+            let args = message.content.toLowerCase().split(" ")
+            if(args[0] === prefix + "volume"){
+                let volume = parseInt(args[1], 10)/100
+                if(1 >= volume){
+                    dispatcher.setVolume(volume)
+                }
+            }
+            
             if(message.content.toLowerCase() === prefix + "skip"){
                 dispatcher.end()
                 
             }
+
+            if(dispatcher.paused){
+                if(message.content.toLowerCase() === prefix + "resume"){
+                    dispatcher.resume()
+                }
+                
+            } else {    
+                if(message.content.toLowerCase() === prefix + "pause"){
+                    dispatcher.pause()
+                }
+
+            }
+
         }
 
-        client.on("message", skip)
+
+        client.on("message", handleMessage)
     })  
 } 
 
