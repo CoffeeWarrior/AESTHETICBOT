@@ -28,7 +28,9 @@ const music = (client, queue) => {
 
 
         if(args[0].toLowerCase() === prefix + "play"){
-            queue.push(searchterm) 
+            queue.push(searchterm)
+            const rng = Math.floor((Math.random() * 3))
+            message.reply(["Coming right up!", "You got it.", "Good choice!"][rng])
             if(message.member.voiceChannel !== message.guild.me.voiceChannel){
                 message.member.voiceChannel.join()
                     .then((connection) => {
