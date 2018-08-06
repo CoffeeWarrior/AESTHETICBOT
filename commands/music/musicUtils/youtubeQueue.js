@@ -10,7 +10,7 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
         }
         let dispatcher = connection.playStream(ytdl(ytVid, {filter:"audioonly"}), {seek: 0, volume: 1})
         
-        dispatcher.setVolume(.5)
+        dispatcher.setVolume(.25)
             
         dispatcher.on("end", () =>{
             dispatcher.end()
