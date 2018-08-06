@@ -1,5 +1,4 @@
 const {prefix} = require("./../../config")
-const {test} = require("./test")
 
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
