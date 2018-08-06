@@ -2,6 +2,7 @@ const ytdl = require("ytdl-core")
 const {youtubeSearch}  = require("./youtubeSearch")
 const {prefix} = require("./../../../config")
 
+
 const youtubeQueue = (queue, connection, voiceChannel, client) => {
     return youtubeSearch(queue[0]).then((ytVid) => {
         if(queue.length == 0){
@@ -11,7 +12,7 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
 
         let dispatcher = connection.playStream(ytdl(ytVid, {filter:"audioonly"}), {seek: 0, volume: 1})
         
-        dispatcher.setVolume(.25)
+        dispatcher.setVolume(.25);
         
         if(queue[0] === "bass boosted soviet russia anthem"){
             dispatcher.setVolume(2)

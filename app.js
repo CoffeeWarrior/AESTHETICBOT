@@ -3,6 +3,8 @@ var Discord = require("discord.js")
 var client = new Discord.Client()
 //configuration stuff
 const {apikey} = require("./config")
+
+
 client.login(apikey)
 
 
