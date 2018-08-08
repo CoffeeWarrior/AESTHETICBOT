@@ -1,4 +1,4 @@
-<h1># A E S T H E T I C B O T</h1>
+<h1 style="color:blue"># A E S T H E T I C B O T</h1>
 Making my own bot for discord!
 
 Having used Discord for a long time to chat with friends, I thought it would be a fun project to make a discord bot capable of playing music
