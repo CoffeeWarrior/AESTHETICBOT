@@ -12,23 +12,23 @@ prefix (set in config): !
 
 Commands so far:
 
-!play [songname, or link]
+!play [songname, or link] <br/>
 joins the voicechannel and plays the specified song. If a song is already playing it adds the song to the queue
 
-!skip
+!skip <br/>
 skips the current song. If the song is the only song in queue it leaves the voicechannel
 
-!pause
+!pause <br/>
 pauses the currently playing song
 
-!resume
+!resume <br/>
 resumes the paused song
 
-!volume [1-100 value]
+!volume [1-100 value] <br/>
 sets the volume for the song. default value is 25
 
-!queue
+!queue <br/>
 lists out the queue along with the currently playing song
 
-!clear
+!clear <br/>
 clears the queue
