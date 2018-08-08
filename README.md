@@ -32,3 +32,15 @@ lists out the queue along with the currently playing song
 
 <strong>!clear</strong> <br/>
 clears the queue
+
+<strong>!default<strong> <br/>
+plays all default songs
+  
+<strong>!default [songname or link]<strong> <br/>
+sets a song as one of your defaults
+  
+<strong>!default list<strong> <br/>
+lists all your default songs
+  
+<strong>!default remove [number]<strong> <br/>
+removes a default song from the list
