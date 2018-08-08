@@ -10,7 +10,7 @@ client.login(apikey)
 
 const {music} = require("./commands/music/music")
 const queue = []
-const defaultQueue = []
+const defaultQueueMap = new Map()
 
 
 client.on("ready", () => {
@@ -18,4 +18,4 @@ client.on("ready", () => {
 })
 
 
-music(client, queue, defaultQueue)
+music(client, queue, defaultQueueMap)

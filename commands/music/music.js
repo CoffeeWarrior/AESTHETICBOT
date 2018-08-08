@@ -2,7 +2,7 @@ const {prefix} = require("./../../config")
 
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
-const music = (client, queue, defaultQueue) => {
+const music = (client, queue, defaultQueueMap) => {
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -12,10 +12,12 @@ const music = (client, queue, defaultQueue) => {
         }
         const msg = message.content
         
+        
+
         const searchterm = msg.slice(6, message.content.length)
         const args = msg.split(" ")
         const defaultQueueAddition = msg.slice(8, message.content.length)
-     
+        
         // let command = resolve_command()
 
         // // look for js enum
@@ -27,6 +29,12 @@ const music = (client, queue, defaultQueue) => {
         //         md.end();
         //     }
         if(args[0].toLowerCase() === prefix + "default"){
+            if(!defaultQueueMap.get(message.author.id)){
+                defaultQueueMap.set(message.author.id, [])
+            }
+
+            let defaultQueue = defaultQueueMap.get(message.author.id);
+            
             if(args[1]){
                 switch(args[1].toLowerCase()){
                 case "list":
