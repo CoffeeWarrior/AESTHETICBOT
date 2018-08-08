@@ -15,7 +15,7 @@ Commands so far:
 !play [songname, or link]
 joins the voicechannel and plays the specified song. If a song is already playing it adds the song to the queue
 
-!skip 
+!skip
 skips the current song. If the song is the only song in queue it leaves the voicechannel
 
 !pause
