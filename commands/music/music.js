@@ -14,7 +14,7 @@ const music = (client, queue, defaultQueue) => {
         
         const searchterm = msg.slice(6, message.content.length)
         const args = msg.split(" ")
-        const defaultQueueAddition = msg.slice(8, message.content.length);
+        const defaultQueueAddition = msg.slice(8, message.content.length)
      
         // let command = resolve_command()
 
@@ -29,24 +29,24 @@ const music = (client, queue, defaultQueue) => {
         if(args[0].toLowerCase() === prefix + "default"){
             if(args[1]){
                 switch(args[1].toLowerCase()){
-                    case "list":
-                        let defaultQueueList = "";
-                        for(var i = 0; i < defaultQueue.length; i++){
-                            defaultQueueList += `\n[${i}].   ${defaultQueue[i]} `
-                        }
-                        message.reply(defaultQueueList)
-                        break
-                    case "remove":
-                        if(parseInt(args[2], 10) >= 0 && defaultQueue.length >= parseInt(args[2], 10)){
-                            let removedSong = defaultQueue.splice(args[2], 1)
-                            message.reply(`removed song: ${removedSong}`)
-                        } else {
-                            message.reply("please specify a song on the queue list")
-                        }
-                        break
-                    default:
-                        defaultQueue.push(defaultQueueAddition)
-                        message.reply(`added "${defaultQueueAddition}" to default queue`)
+                case "list":
+                    let defaultQueueList = ""
+                    for(var i = 0; i < defaultQueue.length; i++){
+                        defaultQueueList += `\n[${i}].   ${defaultQueue[i]} `
+                    }
+                    message.reply(defaultQueueList)
+                    break
+                case "remove":
+                    if(parseInt(args[2], 10) >= 0 && defaultQueue.length >= parseInt(args[2], 10)){
+                        let removedSong = defaultQueue.splice(args[2], 1)
+                        message.reply(`removed song: ${removedSong}`)
+                    } else {
+                        message.reply("please specify a song on the queue list")
+                    }
+                    break
+                default:
+                    defaultQueue.push(defaultQueueAddition)
+                    message.reply(`added "${defaultQueueAddition}" to default queue`)
                 }
             } else {    
                 queue.push.apply(queue, defaultQueue)
