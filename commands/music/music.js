@@ -34,7 +34,7 @@ const music = (client, queue, usersQueues) => {
                 usersQueues.set(message.author.id, [])
             }
 
-            let defaultQueue = usersQueues.get(message.author.id);
+            let defaultQueue = usersQueues.get(message.author.id)
             
             if(args[1]){
                 switch(args[1].toLowerCase()){
@@ -65,7 +65,7 @@ const music = (client, queue, usersQueues) => {
                             youtubeQueue(queue, connection, message.member.voiceChannel, client)
                         })
                         .catch((e) => (e))
-                    }
+                }
             } 
         }
 
