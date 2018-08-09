@@ -50,10 +50,9 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
                     dispatcher.pause()
                 }
                 break
-            case prefix + "clear":
-                queue = []
-                break
             case prefix + "disconnect":
+                queue.length = 0
+                dispatcher.end()
                 connection.disconnect()
                 message.reply("goodbye")
                 break

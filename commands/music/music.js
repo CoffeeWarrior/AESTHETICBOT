@@ -2,7 +2,7 @@ const {prefix} = require("./../../config")
 
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
 
-const music = (client, queue, defaultQueueMap) => {
+const music = (client, queue, usersQueues) => {
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -29,11 +29,12 @@ const music = (client, queue, defaultQueueMap) => {
         //         md.end();
         //     }
         if(args[0].toLowerCase() === prefix + "default"){
-            if(!defaultQueueMap.get(message.author.id)){
-                defaultQueueMap.set(message.author.id, [])
+            
+            if(!usersQueues.get(message.author.id)){
+                usersQueues.set(message.author.id, [])
             }
 
-            let defaultQueue = defaultQueueMap.get(message.author.id);
+            let defaultQueue = usersQueues.get(message.author.id);
             
             if(args[1]){
                 switch(args[1].toLowerCase()){
@@ -61,10 +62,10 @@ const music = (client, queue, defaultQueueMap) => {
                 if(message.member.voiceChannel !== message.guild.me.voiceChannel){
                     message.member.voiceChannel.join()
                         .then((connection) => {
-                            return youtubeQueue(queue, connection, message.member.voiceChannel, client)
+                            youtubeQueue(queue, connection, message.member.voiceChannel, client)
                         })
                         .catch((e) => (e))
-                }
+                    }
             } 
         }
 

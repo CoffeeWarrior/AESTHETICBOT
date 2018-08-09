@@ -30,9 +30,6 @@ sets the volume for the song. default value is 25
 <strong>!queue</strong> <br/>
 lists out the queue along with the currently playing song
 
-<strong>!clear</strong> <br/>
-clears the queue
-
 <strong>!default<strong> <br/>
 plays all default songs
   
