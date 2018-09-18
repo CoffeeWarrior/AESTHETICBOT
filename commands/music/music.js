@@ -1,7 +1,7 @@
 const {prefix} = require("./../../config")
 
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
-const fs  = require("fs");
+const fs  = require("fs")
 
 
 const music = (client, queue) => {
@@ -33,10 +33,10 @@ const music = (client, queue) => {
         if(args[0].toLowerCase() === prefix + "default"){
             
             //load default queue or set as empty array
-            var defaultQueue = [];
+            var defaultQueue = []
 
             try{
-                defaultQueue = JSON.parse(fs.readFileSync(`./users/${message.author.id}.json`));
+                defaultQueue = JSON.parse(fs.readFileSync(`./users/${message.author.id}.json`))
             } catch(e) {}
             
             //check what to do with queue
@@ -65,9 +65,9 @@ const music = (client, queue) => {
                     }
                     break
                 default:
-                    defaultQueue.push(defaultQueueAddition);
+                    defaultQueue.push(defaultQueueAddition)
 
-                    fs.writeFileSync(`./users/${message.author.id}.json`, JSON.stringify(defaultQueue));
+                    fs.writeFileSync(`./users/${message.author.id}.json`, JSON.stringify(defaultQueue))
 
 
                     // defaultQueue.push(defaultQueueAddition)
