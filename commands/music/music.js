@@ -1,8 +1,10 @@
 const {prefix} = require("./../../config")
 
 const {youtubeQueue} = require("./musicUtils/youtubeQueue") //goes thru queue and plays songs recursively //params = (queue, connection)
+const fs  = require("fs");
 
-const music = (client, queue, usersQueues) => {
+
+const music = (client, queue) => {
     client.on("message", (message) => {
         if (!message.guild){
             return
@@ -30,15 +32,19 @@ const music = (client, queue, usersQueues) => {
         //     }
         if(args[0].toLowerCase() === prefix + "default"){
             
-            if(!usersQueues.get(message.author.id)){
-                usersQueues.set(message.author.id, [])
-            }
+            //load default queue or set as empty array
+            var defaultQueue = [];
 
-            let defaultQueue = usersQueues.get(message.author.id)
+            try{
+                defaultQueue = JSON.parse(fs.readFileSync(`./users/${message.author.id}.json`));
+            } catch(e) {}
             
+            //check what to do with queue
             if(args[1]){
                 switch(args[1].toLowerCase()){
                 case "list":
+                    // list out songs in the defaultqueue
+                
                     let defaultQueueList = ""
                     for(var i = 0; i < defaultQueue.length; i++){
                         defaultQueueList += `\n[${i}].   ${defaultQueue[i]} `
@@ -47,15 +53,25 @@ const music = (client, queue, usersQueues) => {
                     break
                 case "remove":
                     if(parseInt(args[2], 10) >= 0 && defaultQueue.length >= parseInt(args[2], 10)){
+                        
+                        // remove song of specified value from array
+
+
                         let removedSong = defaultQueue.splice(args[2], 1)
+                        fs.writeFileSync(`./users/${message.author.id}.json`, JSON.stringify(defaultQueue))
                         message.reply(`removed song: ${removedSong}`)
                     } else {
                         message.reply("please specify a song on the queue list")
                     }
                     break
                 default:
-                    defaultQueue.push(defaultQueueAddition)
-                    message.reply(`added "${defaultQueueAddition}" to default queue`)
+                    defaultQueue.push(defaultQueueAddition);
+
+                    fs.writeFileSync(`./users/${message.author.id}.json`, JSON.stringify(defaultQueue));
+
+
+                    // defaultQueue.push(defaultQueueAddition)
+                    // message.reply(`added "${defaultQueueAddition}" to default queue`)
                 }
             } else {    
                 queue.push.apply(queue, defaultQueue)
