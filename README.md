@@ -15,6 +15,9 @@ Commands so far:
 <strong>!play [songname, or link] </strong><br/>
 joins the voicechannel and plays the specified song. If a song is already playing it adds the song to the queue
 
+<strong>!disconnect </strong><br/>
+The bot leaves the channel
+
 <strong>!skip </strong><br/>
 skips the current song. If the song is the only song in queue it leaves the voicechannel
 
