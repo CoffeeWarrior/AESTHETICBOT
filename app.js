@@ -4,12 +4,16 @@ var client = new Discord.Client()
 //configuration stuff
 const {apikey} = require("./config")
 
+const {help} = require("./commands/basic/help")
+
 
 client.login(apikey)
 
 
+
 const {music} = require("./commands/music/music")
 const queue = []
+
 
 client.on("ready", () => {
     console.log("Bot Launched... ")
@@ -17,3 +21,4 @@ client.on("ready", () => {
 
 
 music(client, queue)
+help(client);
