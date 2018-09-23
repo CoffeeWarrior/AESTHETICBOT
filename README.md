@@ -44,3 +44,6 @@ lists all your default songs
   
 <strong>!default remove [number]</strong> <br/>
 removes a default song from the list
+
+<strong>!shuffle</strong> <br/>
+shuffles the current queue to a more randomized version
