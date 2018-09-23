@@ -34,7 +34,18 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
                     dispatcher.setVolume(volume)
                 }
                 break
-                
+            case prefix + "shuffle":
+                var newQueue = [];
+                if(queue.length > 1){
+                    for(i = queue.length; i > 0; i-- ){
+                        var songIndex = Math.floor(i * Math.random());
+                        newQueue.push(queue[songIndex]);
+                        queue.splice(songIndex, 1);
+                        console.log(queue.length);
+                    }
+                    queue = newQueue;
+                }
+                break
             case prefix + "skip":
                 dispatcher.end()
                 break
