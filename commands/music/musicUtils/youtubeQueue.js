@@ -35,15 +35,17 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
                 }
                 break
             case prefix + "shuffle":
-                var newQueue = [];
+                var newQueue = []
+                newQueue.push(queue[0])
+                queue.splice(0, 1)
                 if(queue.length > 1){
-                    for(i = queue.length; i > 0; i-- ){
-                        var songIndex = Math.floor(i * Math.random());
-                        newQueue.push(queue[songIndex]);
-                        queue.splice(songIndex, 1);
-                        console.log(queue.length);
+                    for(var i = queue.length; i > 0; i--){
+                        let songIndex = Math.floor(i * Math.random())
+                        newQueue.push(queue[songIndex])
+                        queue.splice(songIndex, 1)
+                        console.log(queue.length)
                     }
-                    queue = newQueue;
+                    queue.push(newQueue)
                 }
                 break
             case prefix + "skip":
