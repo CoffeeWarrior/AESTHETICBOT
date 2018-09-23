@@ -43,9 +43,8 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
                         let songIndex = Math.floor(i * Math.random())
                         newQueue.push(queue[songIndex])
                         queue.splice(songIndex, 1)
-                        console.log(queue.length)
                     }
-                    queue.push(newQueue)
+                    queue.push.apply(queue, newQueue)
                 }
                 break
             case prefix + "skip":
