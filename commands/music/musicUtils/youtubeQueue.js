@@ -84,6 +84,10 @@ const youtubeQueue = (queue, connection, voiceChannel, client) => {
                 message.reply(["why would you ask for this? You sick fuck.", "You're a monster...", "Has God truly abondoned us?", "david has tinnitus you know"][rng])
                 message.delete()
                 break
+            case prefix + "house":
+                queue.unshift("","JUST GET A HOUSE LOOOOOOOL 4head");
+                dispatcher.end();
+                break
             default:
             }
 
